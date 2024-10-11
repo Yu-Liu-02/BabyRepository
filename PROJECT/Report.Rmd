@@ -1,0 +1,22 @@
+---
+title: "Report for project of BIOS 611"
+author:
+  - Yu Liu
+documentclass: ctexart
+output:
+  rticles::ctex:
+    fig_caption: yes
+    number_sections: no
+    toc: no
+classoption: "hyperref"
+geometry: tmargin=1.8cm,bmargin=1.8cm,lmargin=1.6cm,rmargin=1.6cm
+---
+
+# Test whether Makefile works
+```{r}
+set.seed(1)  
+data=readRDS(paste("session",1,".rds",sep=''))
+print(session[[i]]$mouse_name)
+print(session[[i]]$date_exp)
+  
+```

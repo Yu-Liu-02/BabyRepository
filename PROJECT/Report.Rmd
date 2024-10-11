@@ -18,5 +18,4 @@ set.seed(1)
 data=readRDS(paste("session",1,".rds",sep=''))
 print(session[[i]]$mouse_name)
 print(session[[i]]$date_exp)
-  
 ```

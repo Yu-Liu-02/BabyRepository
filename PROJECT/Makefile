@@ -14,14 +14,20 @@
 # unable to render reference in the first run
 	pdflatex ./report.tex
 
+datsum.txt: datsum.R
+	Rscript datsum.R
+
 Figure/heatplot.png: heatplot.R
-	Rscript r1variable.py
+	Rscript heatplot.R
 
-output/2gene_space_norm.pdf output/2mean_count_norm.pdf output/2mean_count.pdf: r2mean.py
-	python3 r2mean.py
+Figure/ROC_logit.png Figure/ROC_svm.png Figure/ROC_xgb.png: ROCcurve.R
+	Rscript ROCcurve.R
 
-output/3gpca_params.pdf output/3pca_gpca_compare.pdf: r3cluster.py
-	python3 r3cluster.py
+Figure/intensityplot_ACA.png Figure/intensityplot_CA3.png Figure/intensityplot_DG.png Figure/intensityplot_LS.png: intensityplot.R
+	Rscript intensityplot.R
+
+Figure/spikeplot.R: spikeplot.R
+	Rscript spikeplot.R
 
 clean: 
 	rm output/*

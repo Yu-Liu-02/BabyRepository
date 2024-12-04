@@ -3,6 +3,8 @@
 $\cdot$`docker build . -t project` <br>
 $\cdot$`docker run --rm -v "$(pwd):/Result" project make` <br>
 
+The final output is at the same directory with the name of "main.pdf".
+
 
 
 # Background

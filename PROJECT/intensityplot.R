@@ -141,7 +141,7 @@ for(i in 1:(length(iv)-1)){
   dataset<-add_row(dataset,aggregate_events(trials,Z=iv[i+1]));
 }
 for(i in 1:length(brain_area)){
-  png(filename = paste("./Figure/intensityplot","_",brain_area[i],".png",sep=""))
+  png(filename = paste("intensityplot","_",brain_area[i],".png",sep=""))
   Plot.EmpiricalIntensity(dataset,paste("N",i,sep = ""),spk.time,brain_area[i], smooth=T, h=0.04, "Epanechnikov")
   dev.off()
 }

@@ -17,7 +17,7 @@ RUN python3 --version
 
 RUN apt-get install -y python3-pip
 
-RUN R -e "install.packages(c('ggnewscale', 'tidyverse', 'corrplot', 'pROC', 'factoextra', 'foreach', 'ggplot2'), repos = 'https://cloud.r-project.org/', dependencies = TRUE, quiet = TRUE)"
+RUN R -e "install.packages(c('dplyr','tidyverse','reshape2','ggplot2','RColorBrewer','xgboost','pROC','e1071'), repos = 'https://cloud.r-project.org/', dependencies = TRUE, quiet = TRUE)"
 
 RUN add-apt-repository ppa:kelleyk/emacs && \
     apt-get update && \

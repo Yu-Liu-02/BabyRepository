@@ -66,5 +66,5 @@ ggplot(heat.dat,aes(factor(x,levels = list),
                        limits=c(0,1),breaks=c(0,1))+
   labs(x = "right contrast",y = "left contrast")+
   theme_bw(base_size = 15) + labs(fill = "choice")
-ggsave("heatplot.png",width = 18, height = 10, units = "cm", dpi = 300)
+ggsave("./Figure/heatplot.png",width = 18, height = 10, units = "cm", dpi = 300)
 dev.off()

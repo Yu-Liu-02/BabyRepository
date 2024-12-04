@@ -136,7 +136,7 @@ FB_P.svm <- attr(predict(svm.model, dat[val.idx,], probability = T),"probabiliti
 roc.svm = roc(FB_T, FB_P.svm)
 AUC.svm = auc(roc.svm)
 options(repr.plot.width=10, repr.plot.height=10)
-png(filename = "ROC_svm.png")
+png(filename = "./Figure/ROC_svm.png")
 plot(1-roc.svm$specificities,roc.svm$sensitivities, type = "l", xlab = "
      1 - Specificity", ylab = "Sensitvity", font.lab = 2, cex.lab=1.5,cex.axis=1.5,lwd = 2, col = "red")
 abline(a = 0, b=1, col = "grey", lty = 2, lwd = 2)

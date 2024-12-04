@@ -1,48 +1,21 @@
 \documentclass[12pt]{article}
 \usepackage{times}
 \usepackage{amsmath,amssymb,amsthm,amsfonts,bm,color}
-\usepackage{bbm}
 \usepackage{natbib}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc} 
 \usepackage{enumitem}
 \usepackage{hyperref}
 \usepackage{lipsum}
-\usepackage[ruled]{algorithm2e}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{multirow}
-\usepackage{xeCJK}
-\usepackage{algorithm}
-\usepackage[ruled,linesnumbered]{algorithm2e}
-\usepackage[noend]{algpseudocode}
 \usepackage{amsthm} 
-\newtheorem{theorem}{THEOREM}
-\newtheorem{corollary}{COROLLARY}
-\newtheorem{lemma}{LEMMA}
-\newtheorem{remark}{REMARK}
-\newtheorem{definition}{DEFINITION}
-\newtheorem{proposition}{PROPOSITION}
-\newtheorem{assumption}{ASSUMPTION}
 \usepackage{amsthm,amsmath,amssymb}
 \usepackage{mathrsfs}
-\usepackage{MnSymbol}
-\usepackage{appendix}
 \usepackage{subfigure}
 
 
-\newcommand{\md}{ {\rm d} }
-\newcommand{\ACER}{ {\rm ACER} }
-\newcommand{\ACE}{{\rm ACE}}
-\newcommand{\T}{ {\rm T} }
-\newcommand{\red}[1]{{\leavevmode\color{red}{#1}}}
-\newcommand{\MISE}{ {\rm MISE} }
-\newcommand{\hJ}{{\hat{\mathbb{J}}_{\hat{\mathbb{F}},\hat{\bm{H}}}}}
-\newcommand{\J}{{\mathbb{J}}_{\mathbb{F},\bm{H}}}
-\newcommand{\hF}{\hat{\mathbb{F}}}
-\newcommand{\hH}{{\hat{\bm{H}}}}
-\newcommand{\hL}{{\hat{\bm{L}}}}
-\newcommand{\bL}{{\bm{L}}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -80,14 +53,14 @@
 \maketitle
 
 \section{Introduction}
-Understanding the neural basis of decision-making is a central question in neuroscience. In particular, the visual system plays a crucial role in guiding animals' decisions based on sensory information. The study by \cite{steinmetz2019distributed} provides valuable insights into the dynamics of sensory processing and decision-making in mice, specifically by examining how the brain integrates visual stimuli to influence motor actions. By presenting varying contrast levels on two screens, the researchers designed a task in which the mouse must choose a direction based on which contrast was greater. The task setup allows the exploration of decision-making processes under controlled visual stimuli, shedding light on how the brain responds to contrasting sensory inputs.
+Understanding the neural basis of decision-making is a central question in neuroscience. In particular, the visual system plays a crucial role in guiding animals' decisions based on sensory information. The study by steinmetz et al. provides valuable insights into the dynamics of sensory processing and decision-making in mice, specifically by examining how the brain integrates visual stimuli to influence motor actions. By presenting varying contrast levels on two screens, the researchers designed a task in which the mouse must choose a direction based on which contrast was greater. The task setup allows the exploration of decision-making processes under controlled visual stimuli, shedding light on how the brain responds to contrasting sensory inputs.
 
 By studying the neural responses in different brain areas, particularly the visual cortex, we can gain insights into how sensory information is encoded and processed to guide behavior. The motivation behind this project is to build a predictive model that can estimate the mouse's choice based on the visual stimuli presented (i.e., the left and right contrast levels). Additionally, we aim to uncover patterns in the neural data, that are associated with different choices. By analyzing the spike train data from the neurons, we hope to identify neural signatures that correlate with correct or incorrect decisions, as well as the influence of varying contrast levels on neural firing patterns.
 
 By combining behavioral data with neural recordings, this study aims to advance the understanding of the neural coding mechanisms involved in visual decision-making. Such insights are crucial for broader questions in neuroscience, such as how sensory information is integrated for motor control, how the brain makes choices under uncertainty, and how decision-making is influenced by sensory cues.
 
 \section{Dataset Description}
-In the study conducted by \cite{steinmetz2019distributed}, experiments were performed on a total of 10 mice over 39 sessions. Each session comprised several hundred trials, during which visual stimuli were randomly presented to the mouse on two screens positioned on both sides of it. The stimuli varied in terms of contrast levels, which took values in $\{0, 0.25, 0.5, 1\}$, with $0$ indicating the absence of a stimulus. The mice were required to make decisions based on the visual stimuli, using a wheel controlled by their forepaws. A reward or penalty (i.e., feedback) was subsequently administered based on the outcome of their decisions. In particular,
+In the study conducted by steinmetz et al., experiments were performed on a total of 10 mice over 39 sessions. Each session comprised several hundred trials, during which visual stimuli were randomly presented to the mouse on two screens positioned on both sides of it. The stimuli varied in terms of contrast levels, which took values in $\{0, 0.25, 0.5, 1\}$, with $0$ indicating the absence of a stimulus. The mice were required to make decisions based on the visual stimuli, using a wheel controlled by their forepaws. A reward or penalty (i.e., feedback) was subsequently administered based on the outcome of their decisions. In particular,
 
 When left contrast > right contrast, success (1) if turning the wheel to the right and failure (-1) otherwise.
 When right contrast > left contrast, success (1) if turning the wheel to the left and failure (-1) otherwise.
@@ -131,14 +104,14 @@ L \textless R               & 27      & 27      & 54    & 0.5                   
 \end{center}
 \end{table}
 We can see that Cori generally performs best in the first scenario, i.e. the left contrast is greater. To obtain a more specific success rate among 3 sessions for the entire 16 scenarios, we integrate the data from different sessions and construct the following heat map,
-\begin{figure}[H]
+\begin{figure}[ht]
   \centering
   \subfigure[Average Task Performance]{
     \includegraphics[width=0.9\textwidth]{Figure/heatplot.png}
   }
   \caption{Average task performance across subjects; n = 1 mouse, 3 sessions, 593 trials. Color map depicts the probability of each choice given the combination of contrasts presented.}
 \end{figure}
-The result from the heat map is consistent with \cite{steinmetz2019distributed}. Its choices were more accurate when stimuli appeared on a single side at high contrast. It performed less accurately in more challenging conditions: with low-contrast single stimuli; or with competing stimuli of similar but unequal contrast. We can hereafter use the success rate in each scenarios to build a score system for each task. Then we apply these scores together with scenarios to predict the mouse choice.
+The result from the heat map is consistent with . Its choices were more accurate when stimuli appeared on a single side at high contrast. It performed less accurately in more challenging conditions: with low-contrast single stimuli; or with competing stimuli of similar but unequal contrast. We can hereafter use the success rate in each scenarios to build a score system for each task. Then we apply these scores together with scenarios to predict the mouse choice.
 
 To conduct prediction stuff, we have to split our dataset into two parts, train set and validation set. To make each sample set more balanced, we do not randomly select from the integrated dataset. Instead, we randomly select trials in each scenario, that is, for each scenario, we split the data into train set and validation set, the final train set and final validation set are given by integrating all the train sets and validation sets among different scenarios, respectively. 
 
@@ -146,8 +119,8 @@ To calculate the score for each trial, we calculate the success rate for each sc
 \begin{align}
     score = 1-success\_rate\nonumber
 \end{align}
-We then use contrast\_left, contrast\_right, and score as covariates, and the feedback\_type as the response. We fit three models——logistic regression, support vector machine (SVM), and XG-Boost. For validation, we predict the probability that the feedback\_type is equal to $1$ instead of the exact category, than we use the ROC curve to further illustrate the performance of each model, which is given in figure~\ref{fig:ROC}.
-\begin{figure}[H]
+We then use contrast\_left, contrast\_right, and score as covariates, and the feedback\_type as the response. We fit three models——logistic regression, support vector machine (SVM), and XG-Boost. For validation, we predict the probability that the feedback\_type is equal to $1$ instead of the exact category, than we use the ROC curve to further illustrate the performance of each model, which is given in figure below.
+\begin{figure}[h]
   \centering
   \subfigure[Logistic Regression]{
     \includegraphics[width=0.3\textwidth]{Figure/ROC_logit.png}
@@ -161,13 +134,14 @@ We then use contrast\_left, contrast\_right, and score as covariates, and the fe
   \caption{ROC curve for different models}
   \label{fig:ROC}
 \end{figure}
+
 Notice that the performance of each model is similar and all values of AUC are greater than 0.5, implying that the constructed model have predictive power. However, the predictive performance of the model is not particularly good, indicating that there is still room for improvement. Realizing that we are not putting the information of neuron firing to use, such as firing to the same scenario neurons can be different, which can lead to success or failure of the mice, if we can use this information, we might be able to predict more accurately.
 
 
 \section{Further exploration and conclusion}
 We show the spike trains collected in a single trial among different brain regions to see if there is a pattern. We can see that generally about 0 to 0.1 seconds after the stimulus starts, the spike train becomes more.
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
   \subfigure[Spike train]{
     \includegraphics[width=0.9\textwidth]{Figure/spikeplot.png}
@@ -183,27 +157,23 @@ A spike train with just one trial does not yield all the information, we average
 \item[$\bullet$] $Z_{i}=1$ when left contrast is $0$ and the right contrast is $1$. 
 \end{itemize}
 
-Figures 1 show the smoothed intensities of neural activities in the different groups corresponding to different types of the instrumental variable. We can see that the visual stimulus triggers increased activities in some of the brain areas.
+Figures 4 show the smoothed intensities of neural activities in the different groups corresponding to different types of the instrumental variable. We can see that the visual stimulus triggers increased activities in some of the brain areas.
 
-\begin{figure}[H]
+\begin{figure}[hb]
   \centering
   \subfigure[ACA]{
-    \includegraphics[width=0.45\textwidth]{Figure/intensityplot_ACA.png}
+    \includegraphics[width=0.4\textwidth]{Figure/intensityplot_ACA.png}
   }
   \subfigure[CA3]{
-    \includegraphics[width=0.45\textwidth]{Figure/intensityplot_CA3.png}
+    \includegraphics[width=0.4\textwidth]{Figure/intensityplot_CA3.png}
   }
   \subfigure[DG]{
-    \includegraphics[width=0.45\textwidth]{Figure/intensityplot_DG.png}
+    \includegraphics[width=0.4\textwidth]{Figure/intensityplot_DG.png}
   }
   \subfigure[LS]{
-    \includegraphics[width=0.45\textwidth]{Figure/intensityplot_LS.png}
+    \includegraphics[width=0.4\textwidth]{Figure/intensityplot_LS.png}
   }
   \caption{Firing rates of different brain areas}
 \end{figure}
-
-
-\bibliographystyle{apalike}
-\bibliography{ref.bib}
 
 \end{document}

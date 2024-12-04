@@ -1,3 +1,11 @@
+# Instructions for using the code
+
+docker build . -t project
+docker run --rm -v "$(pwd):/Result" project make
+
+
+
+# Background
 In the study conducted by Steinmetz et al. (2019), experiments were performed on a total of 10 mice over 39 sessions. Each session comprised several hundred trials, during which visual stimuli were randomly presented to the mouse on two screens positioned on both sides of it. The stimuli varied in terms of contrast levels, which took values in {0, 0.25, 0.5, 1}, with 0 indicating the absence of a stimulus. The mice were required to make decisions based on the visual stimuli, using a wheel controlled by their forepaws. A reward or penalty (i.e., feedback) was subsequently administered based on the outcome of their decisions. In particular,
 
 When left contrast > right contrast, success (1) if turning the wheel to the right and failure (-1) otherwise.<br>

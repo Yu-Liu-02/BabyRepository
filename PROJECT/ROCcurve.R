@@ -101,7 +101,7 @@ FB_T = dat[val.idx,"FB"]
 roc.lr = roc(FB_T, FB_P)
 AUC.lr = auc(roc.lr)
 options(repr.plot.width=10, repr.plot.height=10)
-png(filename = "ROC_logit.png")
+png(filename = "./Figure/ROC_logit.png")
 plot(1-roc.lr$specificities,roc.lr$sensitivities, type = "l", xlab = "
      1 - Specificity", ylab = "Sensitvity", font.lab = 2, cex.lab=1.5,cex.axis=1.5,lwd = 2, col = "red")
 abline(a = 0, b=1, col = "grey", lty = 2, lwd = 2)
@@ -120,7 +120,7 @@ FB_P.xgb <- predict(xgb.model, LR.val)
 roc.xgb = roc(FB_T, FB_P.xgb)
 AUC.xgb = auc(roc.xgb)
 options(repr.plot.width=10, repr.plot.height=10)
-png(filename = "ROC_xgb.png")
+png(filename = "./Figure/ROC_xgb.png")
 plot(1-roc.xgb$specificities,roc.xgb$sensitivities, type = "l", xlab = "
      1 - Specificity", ylab = "Sensitvity", font.lab = 2, cex.lab=1.5,cex.axis=1.5,lwd = 2, col = "red")
 abline(a = 0, b=1, col = "grey", lty = 2, lwd = 2)

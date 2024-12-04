@@ -1,7 +1,7 @@
 # Instructions for using the code
 
-docker build . -t project
-docker run --rm -v "$(pwd):/Result" project make
+$\cdot$`docker build . -t project` <br>
+$\cdot$`docker run --rm -v "$(pwd):/Result" project make` <br>
 
 
 

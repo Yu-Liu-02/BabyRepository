@@ -57,7 +57,7 @@ area.col=brewer.pal(n = length(area.intrs), name = "Set1")
 # spike train in one trial for both regions 
 id = 3 # trial id
 options(repr.plot.width=10, repr.plot.height=50)
-png(filename = "spikeplot.png")
+png(filename = "./Figure/spikeplot.png")
 plot.one.spikes(id,area.intrs,area.col,dat)
 dev.off()
 

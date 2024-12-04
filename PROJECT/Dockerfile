@@ -28,4 +28,16 @@ RUN emacs --version
 
 RUN git --version
 
+RUN apt-get update -y && apt-get install -y \
+    texlive-base \
+    texlive-latex-base \
+    texlive-latex-recommended \
+    texlive-latex-extra \
+    texlive-fonts-recommended \
+    lmodern \
+    && apt-get clean
+# RUN tlmgr init-usertree
+# RUN tlmgr update --self
+# RUN tlmgr install pdftexcmd
+
 CMD ["tail", "-f", "/dev/null"]
